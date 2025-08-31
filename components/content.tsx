@@ -7,7 +7,7 @@ export default function Content() {
     <div className="w-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6">
       
       {/* Text Section with gradient background */}
-      <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl bg-gradient-to-b from-transparent to-white">
+      <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl">
         <TextType
           text={[
             "Python",
@@ -42,7 +42,7 @@ export default function Content() {
       </div>
 
       {/* Image Section */}
-      <div className="flex-1 relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg">
+      <div className="flex-1 relative w-full h-[400px]">
         <Image
           src="/img/pf.png"
           alt="Profile picture of Prasenjeet Howlader"
