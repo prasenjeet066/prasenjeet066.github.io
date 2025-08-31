@@ -8,7 +8,7 @@ export default function Content() {
       
       {/* Text Section with gradient background */}
       
-      <div className="text-xl">
+      <div className="text-xl flex-1 w-full">
         <TextType
           text={[
             "Python",
