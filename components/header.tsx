@@ -51,7 +51,7 @@ export default function Header() {
           transition={{ duration: 0.4, delay: 0.7 }}
           className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition"
         >
-          <Linkedin size={18} />
+          
           <span className="text-sm font-medium">Visit LinkedIn</span>
         </motion.a>
       </div>
