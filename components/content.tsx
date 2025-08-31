@@ -9,7 +9,8 @@ export default function Content() {
       {/* Text Section with gradient background */}
       <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl">
         <p>
-          Hi! I’m a web developer and AI enthusiast who loves turning ideas into real, working applications. I work with Python, JavaScript, Node.js, React, PHP, and Laravel, and I’m also passionate about Machine Learning and Deep Learning. I enjoy solving problems, learning new technologies, and creating solutions that are not just functional but enjoyable to use. Every project I take on is a chance to combine creativity with code and build something meaningful.
+          Hello! I’m a passionate web developer and AI enthusiast with a love for creating innovative digital experiences. Over the years, I’ve honed my skills in Python, JavaScript, Node.js, React, PHP, and Laravel, building projects that are both efficient and user-friendly. But my curiosity doesn’t stop at web development—I’m deeply interested in Machine Learning and Deep Learning, using frameworks like PyTorch and TensorFlow to develop intelligent solutions that can learn, adapt, and make a real impact. I enjoy taking complex problems and breaking them down into simple, elegant solutions, whether it’s designing a seamless user interface or implementing a powerful backend system. What excites me the most is exploring new technologies, experimenting with ideas, and continuously improving my craft. Every project I work on is an opportunity to combine creativity, logic, and technical skill, delivering products that are not only functional but meaningful. I believe in writing clean, scalable code, collaborating effectively, and building applications that people enjoy using. For me, development is not just a profession—it’s a way to solve problems, bring ideas to life, and contribute to the world of technology in a meaningful way.
+
         </p>
         <TextType
           text={[
