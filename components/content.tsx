@@ -7,7 +7,7 @@ interface Props {
   text: string;
 }
 
-export default function HashtagHighlighter({ text }: Props) {
+export  function HashtagHighlighter({ text }: Props) {
   // Regex: #hashtag | @mention | URL
   const regex = /(#\w+)|(@\w+)|(https?:\/\/[^\s]+)/g;
 
