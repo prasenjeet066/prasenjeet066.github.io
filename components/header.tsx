@@ -1,10 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
-
-export default function Header() {
+import {useMobile} from "@/lib/use-mobile"
+import { Menu } from "lucide-react";
+import {useState , useEffect} from 'react'
+export default function Header(isetOpenSideBar,setOpenSideBar) {
+  const [isOpenSideBar,setOpenSideBar] = useState(false);
   const listNavs = ["Home", "About Me", "Projects", "Hire Me"];
-  
+  const isMobile = useMobile();
   return (
     <motion.header
       initial={{ y: -50, opacity: 0 }}
@@ -12,6 +15,11 @@ export default function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="flex items-center justify-between w-full p-4 "
     >
+      {isMobile && (
+        <button className='outline-none border-none' onClick={setOpenSideBar(!isOpenSideBar)}>
+          <Menu/>
+        </button>
+      )}
       {/* Brand */}
       <motion.span
         initial={{ opacity: 0, x: -20 }}
@@ -23,6 +31,7 @@ export default function Header() {
       </motion.span>
 
       {/* Navigation + LinkedIn button */}
+      {!isMobile &&  (
       <div className="flex items-center gap-6 ml-auto">
         <nav className="flex items-center gap-6">
           {listNavs.map((name, i) => {
@@ -55,6 +64,7 @@ export default function Header() {
           <span className="text-sm font-medium">Visit LinkedIn</span>
         </motion.a>
       </div>
+      )}
     </motion.header>
   );
 }
