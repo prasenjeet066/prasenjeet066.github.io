@@ -37,7 +37,7 @@ export default function Content() {
           textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
-        <button class="text-md rounded-full text-white after:content-['_↗'] bg-indigo-600 px-8 p-4">
+        <button class="text-md rounded-full text-white bg-red-600 mt-4 px-8 p-4">
           {"Hire Now"}
           <SquareArrowOutUpRight/>
         </button>
