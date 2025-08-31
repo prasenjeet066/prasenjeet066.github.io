@@ -4,7 +4,7 @@ import { SquareArrowOutUpRight } from 'lucide-react';
 
 export default function Content() {
   let details = "Hello! I’m a passionate web developer and AI enthusiast with a love for creating innovative digital experiences. Over the years, I’ve honed my skills in Python, JavaScript, Node.js, React, PHP, and Laravel, building projects that are both efficient and user-friendly. But my curiosity doesn’t stop at web development—I’m deeply interested in Machine Learning and Deep Learning, using frameworks like PyTorch and TensorFlow to develop intelligent solutions that can learn, adapt, and make a real impact. I enjoy taking complex problems and breaking them down into simple, elegant solutions, whether it’s designing a seamless user interface or implementing a powerful backend system. What excites me the most is exploring new technologies, experimenting with ideas, and continuously improving my craft. Every project I work on is an opportunity to combine creativity, logic, and technical skill, delivering products that are not only functional but meaningful. I believe in writing clean, scalable code, collaborating effectively, and building applications that people enjoy using. For me, development is not just a profession—it’s a way to solve problems, bring ideas to life, and contribute to the world of technology in a meaningful way."
-  details = details.slice(0,650) + "..."
+  details = details.slice(0,550) + "..."
   return (
     <div className="w-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6">
       
@@ -47,7 +47,7 @@ export default function Content() {
       </div>
 
       {/* Image Section */}
-      <div className="flex-1 relative w-full h-[400px] shadow-[25px_26px_0px_-16px_rgba(0,_0,_0,_1)]">
+      <div className="flex-1 relative w-full h-[400px] shadow-[15px_16px_0px_-6px_rgba(0,_0,_0,_1)]">
         <Image
           src="/img/pf.png"
           alt="Profile picture of Prasenjeet Howlader"
