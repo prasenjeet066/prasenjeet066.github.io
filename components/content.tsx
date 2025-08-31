@@ -36,6 +36,9 @@ export default function Content() {
           textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
+        <button class="text-md rounded-full after:content-['_↗'] bg-indigo-600  p-4">
+          {"Hire Now"}
+        </button>
       </div>
 
       {/* Image Section */}
