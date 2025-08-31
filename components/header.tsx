@@ -5,7 +5,7 @@ import {useMobile} from "@/lib/use-mobile"
 import { Menu } from "lucide-react";
 import {useState , useEffect} from 'react'
 export default function Header(isetOpenSideBar,setOpenSideBar) {
-  const [isOpenSideBar,setOpenSideBar] = useState(false);
+  
   const listNavs = ["Home", "About Me", "Projects", "Hire Me"];
   const isMobile = useMobile();
   return (
