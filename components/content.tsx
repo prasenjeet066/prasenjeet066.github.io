@@ -5,7 +5,7 @@ import {SquareArrowOutUpRight} from "lucide-react";
 
 export default function Content() {
   return (
-    <div className="w-full p-6 flex flex-col md:flex-row items-center gap-8">
+    <div className="w-full flex flex-col md:flex-row items-center gap-8">
       
       {/* Text Section with gradient background */}
       
@@ -37,9 +37,9 @@ export default function Content() {
           textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
-        <button class="text-md rounded-full text-white bg-red-600 mt-4 px-8 p-4">
+        <button class="text-md rounded-full text-white bg-gray-900 mt-4 px-8 p-4">
           {"Hire Now"}
-          <SquareArrowOutUpRight/>
+          <SquareArrowOutUpRight className='w-5'/>
         </button>
       </div>
 
