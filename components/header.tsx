@@ -34,7 +34,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                className="text-sm text-gray-700 transition hover:text-black hover:underline"
+                className="text-sm text-gray-700 transition hover:text-black hover:underline after:content-['_↗']"
               >
                 {name}
               </motion.a>
