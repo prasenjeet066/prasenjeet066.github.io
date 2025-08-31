@@ -1,15 +1,13 @@
 import TextType from '@/components/text-anim';
 import Image from 'next/image';
-
-import {SquareArrowOutUpRight} from "lucide-react";
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 export default function Content() {
   return (
-    <div className="w-full flex flex-col md:flex-row items-center gap-8">
+    <div className="w-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6">
       
       {/* Text Section with gradient background */}
-      
-      <div className="text-xl flex-1 w-full flex flex-col items-start gap-2 pl-6">
+      <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl bg-gradient-to-b from-transparent to-white">
         <TextType
           text={[
             "Python",
@@ -26,27 +24,27 @@ export default function Content() {
             "Data Analysis",
             "Web Development",
             "API Development",
-            "Database Design"
+            "Database Design",
           ]}
           typingSpeed={70}
-          pauseDuration={1600}
           deletingSpeed={40}
-          showCursor={true}
+          pauseDuration={1600}
+          showCursor
           cursorCharacter="|"
           cursorBlinkDuration={0.6}
           textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
-        <button class="text-md rounded-full text-white bg-gray-900 p-2 mt-4 px-4 ">
-          {"Hire"}
-          <SquareArrowOutUpRight className='w-5'/>
+        <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-5 py-2 text-md hover:bg-gray-800 transition">
+          Hire
+          <SquareArrowOutUpRight className="w-5 h-5" />
         </button>
       </div>
 
       {/* Image Section */}
-      <div className="flex-1 relative w-full h-[400px] md:h-[500px]">
+      <div className="flex-1 relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg">
         <Image
-          src={'/img/pf.png'}
+          src="/img/pf.png"
           alt="Profile picture of Prasenjeet Howlader"
           placeholder="blur"
           fill
