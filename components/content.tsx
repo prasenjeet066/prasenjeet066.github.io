@@ -3,7 +3,7 @@ import TextType from '@/components/text-anim';
 export default function Content() {
   return (
     <div className="w-full p-6">
-      <div className="rounded-xl bg-white shadow-md m-4 p-6 w-full flex items-center justify-center">
+      <div className="rounded-xl bg-white  m-4 p-6 w-full flex items-center justify-center">
         <TextType
           text={[
             "Welcome to my portfolio website.",
