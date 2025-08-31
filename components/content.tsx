@@ -8,7 +8,7 @@ export default function Content() {
       
       {/* Text Section with gradient background */}
       
-      <div className="text-xl flex-1 w-full">
+      <div className="text-xl flex-1 w-full flex flex-col items-start">
         <TextType
           text={[
             "Python",
@@ -36,7 +36,7 @@ export default function Content() {
           textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
-        <button class="text-md rounded-full after:content-['_↗'] bg-indigo-600  p-4">
+        <button class="text-md rounded-full text-white after:content-['_↗'] bg-indigo-600 px-8 p-4">
           {"Hire Now"}
         </button>
       </div>
