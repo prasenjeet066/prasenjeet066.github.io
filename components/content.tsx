@@ -7,7 +7,8 @@ export default function Content() {
     <div className="w-full p-6 flex flex-col md:flex-row items-center gap-8">
       
       {/* Text Section with gradient background */}
-      <div className="flex-1 m-4 p-6 shadow-lg bg-gradient-to-b from-transparent to-white rounded-xl">
+      
+      <div className="text-xl">
         <TextType
           text={[
             "Python",
