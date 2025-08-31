@@ -10,7 +10,7 @@ export default function Header() {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex items-center justify-between w-full p-4 border-b"
+      className="flex items-center justify-between w-full p-4 "
     >
       {/* Brand */}
       <motion.span
@@ -34,7 +34,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                className="text-sm text-gray-700 transition hover:text-black hover:underline after:content-['_↗']"
+                className="text-sm text-gray-700 transition h over:text-black hover:underline after:content-['_↗']"
               >
                 {name}
               </motion.a>
