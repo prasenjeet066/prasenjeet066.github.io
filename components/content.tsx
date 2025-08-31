@@ -2,7 +2,7 @@ import TextType from '@/components/text-anim';
 export default function Content() {
   return (
     <div className='w-full p-4'>
-      <div className ='rounded-md bg-white p-4'>
+      <div className ='rounded-md bg-white m-4 p-4 w-full flex items-center'>
         
 
 <TextType 
@@ -11,6 +11,8 @@ export default function Content() {
   pauseDuration={1500}
   showCursor={true}
   cursorCharacter="|"
+  textColors='#11111'
+  className='text-lg'
 />
       </div>
     </div>
