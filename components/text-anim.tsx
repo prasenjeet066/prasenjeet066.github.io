@@ -1,7 +1,14 @@
 "use client";
 
-import { ElementType, useEffect, useRef, useState, createElement, useMemo, useCallback } from "react";
-import { gsap } from "gsap";
+import {
+  ElementType,
+  useEffect,
+  useRef,
+  useState,
+  createElement,
+  useMemo,
+  useCallback,
+} from "react";
 
 interface TextTypeProps {
   className?: string;
@@ -50,7 +57,6 @@ const TextType = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(!startOnVisible);
-  const cursorRef = useRef<HTMLSpanElement>(null);
   const containerRef = useRef<HTMLElement>(null);
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
@@ -66,6 +72,7 @@ const TextType = ({
     return textColors[currentTextIndex % textColors.length];
   };
 
+  // Visibility observer
   useEffect(() => {
     if (!startOnVisible || !containerRef.current) return;
 
@@ -84,24 +91,11 @@ const TextType = ({
     return () => observer.disconnect();
   }, [startOnVisible]);
 
-  useEffect(() => {
-    if (showCursor && cursorRef.current) {
-      gsap.set(cursorRef.current, { opacity: 1 });
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        duration: cursorBlinkDuration,
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-      });
-    }
-  }, [showCursor, cursorBlinkDuration]);
-
+  // Typing effect
   useEffect(() => {
     if (!isVisible) return;
 
     let timeout: NodeJS.Timeout;
-
     const currentText = textArray[currentTextIndex];
     const processedText = reverseMode
       ? currentText.split("").reverse().join("")
@@ -111,13 +105,12 @@ const TextType = ({
       if (isDeleting) {
         if (displayedText === "") {
           setIsDeleting(false);
-          if (currentTextIndex === textArray.length - 1 && !loop) {
-            return;
-          }
 
           if (onSentenceComplete) {
             onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
           }
+
+          if (currentTextIndex === textArray.length - 1 && !loop) return;
 
           setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
           setCurrentCharIndex(0);
@@ -129,19 +122,12 @@ const TextType = ({
         }
       } else {
         if (currentCharIndex < processedText.length) {
-          timeout = setTimeout(
-            () => {
-              setDisplayedText(
-                (prev) => prev + processedText[currentCharIndex]
-              );
-              setCurrentCharIndex((prev) => prev + 1);
-            },
-            variableSpeed ? getRandomSpeed() : typingSpeed
-          );
-        } else if (textArray.length > 1) {
           timeout = setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseDuration);
+            setDisplayedText((prev) => prev + processedText[currentCharIndex]);
+            setCurrentCharIndex((prev) => prev + 1);
+          }, variableSpeed ? getRandomSpeed() : typingSpeed);
+        } else if (textArray.length > 1) {
+          timeout = setTimeout(() => setIsDeleting(true), pauseDuration);
         }
       }
     };
@@ -186,13 +172,21 @@ const TextType = ({
     </span>,
     showCursor && (
       <span
-        ref={cursorRef}
-        className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? "hidden" : ""} ${cursorClassName}`}
+        className={`ml-1 inline-block ${shouldHideCursor ? "hidden" : ""} ${cursorClassName}`}
+        style={{
+          animation: `blink ${cursorBlinkDuration}s infinite`,
+        }}
       >
         {cursorCharacter}
       </span>
     )
   );
 };
+
+// Global CSS animation (add to globals.css or tailwind config)
+// @keyframes blink {
+//   0%, 50% { opacity: 1; }
+//   51%, 100% { opacity: 0; }
+// }
 
 export default TextType;

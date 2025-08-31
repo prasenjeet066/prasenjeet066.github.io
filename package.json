@@ -81,7 +81,7 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "latest",
     "zod": "^3.24.1",
-    "gsap": "latest"
+    
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
