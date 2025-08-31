@@ -1,17 +1,30 @@
 import TextType from '@/components/text-anim';
-import Image from 'next/image'
-import url from "/img/pf.png"
+import Image from 'next/image';
+import url from '/img/pf.png';
+
 export default function Content() {
   return (
-    <div className="w-full p-6">
-      <div className="rounded-xl bg-white  m-4 p-6 w-full flex items-center justify-between">
+    <div className="w-full p-6 flex flex-col md:flex-row items-center gap-8">
+      
+      {/* Text Section with gradient background */}
+      <div className="flex-1 m-4 p-6 shadow-lg bg-gradient-to-b from-transparent to-white rounded-xl">
         <TextType
           text={[
-            "Welcome to my portfolio website.",
-            "I specialize in AI, Machine Learning, and Deep Learning.",
-            "Experienced in Python, Node.js, and PHP.",
-            "Skilled with React, Next.js, and modern web development.",
-            "Building efficient and scalable applications."
+            "Python",
+            "JavaScript",
+            "Node.js",
+            "React.js",
+            "Next.js",
+            "PHP",
+            "Laravel",
+            "Machine Learning",
+            "Deep Learning",
+            "PyTorch",
+            "TensorFlow",
+            "Data Analysis",
+            "Web Development",
+            "API Development",
+            "Database Design"
           ]}
           typingSpeed={70}
           pauseDuration={1600}
@@ -19,12 +32,22 @@ export default function Content() {
           showCursor={true}
           cursorCharacter="|"
           cursorBlinkDuration={0.6}
-          textColors={["#111111", "#1a1a1a", "#0f172a"]} // professional dark tones
+          textColors={["#111111", "#1a1a1a", "#0f172a"]}
           className="text-lg sm:text-xl font-medium tracking-tight"
         />
       </div>
 
-      {/* Self-contained cursor blink animation */}
+      {/* Image Section */}
+      <div className="flex-1 relative w-full h-[400px] md:h-[500px]">
+        <Image
+          src={url}
+          alt="Profile picture of Prasenjeet Howlader"
+          placeholder="blur"
+          fill
+          className="object-cover"
+        />
+      </div>
+
       <style jsx>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
@@ -34,10 +57,6 @@ export default function Content() {
           animation: blink 0.6s infinite;
         }
       `}</style>
-      <Image
-      src = { url  }
-      placeholder = "blur"
-      alt = { `author_img` }/>
     </div>
   );
 }
