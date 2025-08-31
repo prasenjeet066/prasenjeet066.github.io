@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function ProfilePage() {
   return (
-    <main className="min-h-screen bg-gray-50 w-full flex flex-row items-center">
+    <main className="min-h-screen bg-gray-50">
       <Header/>
       <Content/>
     </main>
