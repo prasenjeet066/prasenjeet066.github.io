@@ -4,3 +4,9 @@
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: "Harper-Bold";
+  src: url("Harper-Bold Personal Use.otf");
+  font-display: swap;
+font-style: normal;
+}

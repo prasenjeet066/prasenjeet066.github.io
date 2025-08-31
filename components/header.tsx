@@ -17,7 +17,7 @@ export default function Header() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-lg font-bold tracking-wide"
+        className="text-lg logo tracking-wide"
       >
         Prasenjeet
       </motion.span>

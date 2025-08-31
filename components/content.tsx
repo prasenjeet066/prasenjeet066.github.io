@@ -1,9 +1,10 @@
 import TextType from '@/components/text-anim';
-
+import Image from 'next/image'
+import url from "/img/pf.png"
 export default function Content() {
   return (
     <div className="w-full p-6">
-      <div className="rounded-xl bg-white  m-4 p-6 w-full flex items-center justify-center">
+      <div className="rounded-xl bg-white  m-4 p-6 w-full flex items-center justify-between">
         <TextType
           text={[
             "Welcome to my portfolio website.",
@@ -33,6 +34,10 @@ export default function Content() {
           animation: blink 0.6s infinite;
         }
       `}</style>
+      <Image
+      src = { url  }
+      placeholder = "blur"
+      alt = { `author_img` }/>
     </div>
   );
 }

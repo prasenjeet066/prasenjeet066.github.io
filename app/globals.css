@@ -9,4 +9,6 @@
   
   /* Apply TikTok Sans to all common text elements */
   
-
+.logo{
+  font-family: "Harper-Bold";
+}
