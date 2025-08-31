@@ -1,6 +1,7 @@
 import TextType from '@/components/text-anim';
 import Image from 'next/image';
 
+import {SquareArrowOutUpRight} from "lucide-react";
 
 export default function Content() {
   return (
@@ -8,7 +9,7 @@ export default function Content() {
       
       {/* Text Section with gradient background */}
       
-      <div className="text-xl flex-1 w-full flex flex-col items-start">
+      <div className="text-xl flex-1 w-full flex flex-col items-start gap-2">
         <TextType
           text={[
             "Python",
@@ -38,6 +39,7 @@ export default function Content() {
         />
         <button class="text-md rounded-full text-white after:content-['_↗'] bg-indigo-600 px-8 p-4">
           {"Hire Now"}
+          <SquareArrowOutUpRight/>
         </button>
       </div>
 
