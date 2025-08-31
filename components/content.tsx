@@ -47,7 +47,7 @@ export default function Content() {
       </div>
 
       {/* Image Section */}
-      <div className="flex-1 relative w-full h-[400px]">
+      <div className="flex-1 relative w-full h-[400px] shadow-[25px_26px_0px_-16px_rgba(0,_0,_0,_1)]">
         <Image
           src="/img/pf.png"
           alt="Profile picture of Prasenjeet Howlader"
