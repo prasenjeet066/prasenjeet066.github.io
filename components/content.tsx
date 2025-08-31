@@ -8,6 +8,9 @@ export default function Content() {
       
       {/* Text Section with gradient background */}
       <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl">
+        <p>
+          Hi! I’m a web developer and AI enthusiast who loves turning ideas into real, working applications. I work with Python, JavaScript, Node.js, React, PHP, and Laravel, and I’m also passionate about Machine Learning and Deep Learning. I enjoy solving problems, learning new technologies, and creating solutions that are not just functional but enjoyable to use. Every project I take on is a chance to combine creativity with code and build something meaningful.
+        </p>
         <TextType
           text={[
             "Python",
