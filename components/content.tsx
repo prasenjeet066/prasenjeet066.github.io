@@ -1,6 +1,6 @@
 import TextType from '@/components/text-anim';
 import Image from 'next/image';
-import url from '/img/pf.png';
+
 
 export default function Content() {
   return (
@@ -40,7 +40,7 @@ export default function Content() {
       {/* Image Section */}
       <div className="flex-1 relative w-full h-[400px] md:h-[500px]">
         <Image
-          src={url}
+          src={'/img/pf.png'}
           alt="Profile picture of Prasenjeet Howlader"
           placeholder="blur"
           fill
