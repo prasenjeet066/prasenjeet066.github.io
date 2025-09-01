@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
           rel="stylesheet"
         />
-         
+         <meta name="msvalidate.01" content="B2065EBF0E7E141FBC052B17F5B9FAE3" />
         <link href="/fonts/main.css" rel="stylesheet" />
 
         {/* JSON-LD Structured Data for Google Knowledge Panel */}
