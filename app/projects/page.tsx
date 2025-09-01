@@ -349,7 +349,7 @@ const router = useRouter();
                   
                 >
                   {/* Repo Header */}
-                  <div className="flex items-start justify-between mb-3" onClick={()=>router.push(`/projects/${repo.name}`)}>
+                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 min-w-0 flex-1">
                       <Github className="w-5 h-5 text-gray-300 flex-shrink-0 group-hover:text-cyan-400 transition" />
                       <h3 className="text-lg font-semibold text-gray-800 truncate group-hover:text-cyan-400 transition">
