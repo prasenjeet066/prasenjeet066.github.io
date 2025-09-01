@@ -2,13 +2,14 @@
 import { motion } from "framer-motion";
 import { Linkedin, Menu, X } from "lucide-react";
 import { useMobile } from "@/lib/use-mobile";
-
+import { useRouter } from "next/navigation";
 interface HeaderProps {
   isOpenSideBar: boolean;
   setOpenSideBar: (open: boolean) => void;
 }
 
 export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
+  const router = useRouter()
   const listNavs = ["Home", "About Me", "Projects", "Hire Me"];
   const isMobile = useMobile();
 

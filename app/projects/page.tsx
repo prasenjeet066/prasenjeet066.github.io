@@ -345,6 +345,7 @@ const techLogos = [
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className=" bg-white text-gray-800 p-6 rounded-[20px] group hover:scale-[1.02] transition-transform duration-300"
+                  onClick={router.push(`${repo.name}`)}
                 >
                   {/* Repo Header */}
                   <div className="flex items-start justify-between mb-3">
