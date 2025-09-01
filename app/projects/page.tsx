@@ -79,8 +79,13 @@ export default function ProjectsPage() {
         
         const data: Repository[] = await response.json();
         
+        // Filter only repositories that have 'project' tag
+        const projectRepos = data.filter(repo => 
+          repo.topics.some(topic => topic.toLowerCase() === 'project')
+        );
+        
         // Sort by updated_at descending
-        const sortedRepos = data.sort(
+        const sortedRepos = projectRepos.sort(
           (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
         );
         
@@ -113,7 +118,7 @@ export default function ProjectsPage() {
     return repo.language?.toLowerCase() === filter.toLowerCase();
   });
 
-  // Get unique languages
+  // Get unique languages from project repositories only
   const languages = Array.from(
     new Set(repositories.map(repo => repo.language).filter(Boolean))
   ).sort();
@@ -159,6 +164,48 @@ export default function ProjectsPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      {/* Add required CSS for animations */}
+      <style jsx global>{`
+        @keyframes star-movement-bottom {
+          0% {
+            transform: translateX(-50%) translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateX(0%) translateY(-20px) rotate(180deg);
+          }
+          100% {
+            transform: translateX(50%) translateY(0) rotate(360deg);
+          }
+        }
+
+        @keyframes star-movement-top {
+          0% {
+            transform: translateX(50%) translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateX(0%) translateY(20px) rotate(-180deg);
+          }
+          100% {
+            transform: translateX(-50%) translateY(0) rotate(-360deg);
+          }
+        }
+
+        .animate-star-movement-bottom {
+          animation: star-movement-bottom var(--animation-duration, 6s) linear infinite;
+        }
+
+        .animate-star-movement-top {
+          animation: star-movement-top var(--animation-duration, 6s) linear infinite;
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
+
       <Header isOpenSideBar={isOpenSideBar} setOpenSideBar={setOpenSideBar} />
       
       <div className="container mx-auto px-4 py-8">
@@ -172,9 +219,9 @@ export default function ProjectsPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             My Projects
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{`
-            A collection of my open-source projects and contributions on GitHub. 
-            Showcasing my journey in web development, AI, and software engineering.`}
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            A collection of my featured projects tagged with #project on GitHub. 
+            Showcasing my journey in web development, AI, and software engineering.
           </p>
         </motion.div>
 
@@ -190,7 +237,7 @@ export default function ProjectsPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search repositories..."
+              placeholder="Search projects..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -272,7 +319,7 @@ export default function ProjectsPage() {
             className="text-center mb-6"
           >
             <p className="text-gray-600">
-              Showing {filteredRepos.length} of {repositories.length} repositories
+              Showing {filteredRepos.length} project repositories
               {searchTerm && ` matching "${searchTerm}"`}
             </p>
           </motion.div>
@@ -310,110 +357,110 @@ export default function ProjectsPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredRepos.map((repo, index) => (
-            <StarBorder
-            className="custom-class"
-            color="cyan"
-            speed="5s">
-
-              <motion.div
+              <StarBorder
                 key={repo.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white rounded-lg  hover:shadow-xl transition-all duration-300 p-6  group rounded-md hover:border-blue-300 hover:scale-105"
+                className="w-full"
+                color="#00bcd4"
+                speed="4s"
+                as="div"
               >
-                {/* Repo Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2 min-w-0 flex-1">
-                    <Github className="w-5 h-5 text-gray-700 flex-shrink-0 group-hover:text-blue-600 transition" />
-                    <h3 className="text-lg font-semibold text-gray-900 truncate group-hover:text-blue-600 transition">
-                      {repo.name}
-                    </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-gradient-to-b from-gray-900 to-black text-white p-6 rounded-[20px] group hover:scale-[1.02] transition-transform duration-300"
+                >
+                  {/* Repo Header */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2 min-w-0 flex-1">
+                      <Github className="w-5 h-5 text-gray-300 flex-shrink-0 group-hover:text-cyan-400 transition" />
+                      <h3 className="text-lg font-semibold text-white truncate group-hover:text-cyan-400 transition">
+                        {repo.name}
+                      </h3>
+                    </div>
                   </div>
-                  
-                </div>
 
-                {/* Description */}
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3 min-h-[3rem] leading-relaxed">
-                  {repo.description || "No description available"}
-                </p>
+                  {/* Description */}
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-3 min-h-[3rem] leading-relaxed">
+                    {repo.description || "No description available"}
+                  </p>
 
-                {/* Topics */}
-                {repo.topics && repo.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {repo.topics.slice(0, 3).map((topic) => (
-                      <span
-                        key={topic}
-                        className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 transition cursor-pointer"
-                      >
-                        #{topic}
-                      </span>
-                    ))}
-                    {repo.topics.length > 3 && (
-                      <span className="text-xs text-gray-500 px-2 py-1">
-                        +{repo.topics.length - 3} more
-                      </span>
+                  {/* Topics */}
+                  {repo.topics && repo.topics.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {repo.topics.slice(0, 3).map((topic) => (
+                        <span
+                          key={topic}
+                          className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full hover:bg-cyan-500/30 transition cursor-pointer border border-cyan-500/30"
+                        >
+                          #{topic}
+                        </span>
+                      ))}
+                      {repo.topics.length > 3 && (
+                        <span className="text-xs text-gray-400 px-2 py-1">
+                          +{repo.topics.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Language and Stats */}
+                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-300 flex-wrap">
+                    {repo.language && (
+                      <div className="flex items-center gap-1">
+                        <div
+                          className="w-3 h-3 rounded-full"
+                          style={{
+                            backgroundColor: LanguageColors[repo.language] || "#ccc",
+                          }}
+                        />
+                        <span className="font-medium">{repo.language}</span>
+                      </div>
+                    )}
+                    {repo.stargazers_count > 0 && (
+                      <div className="flex items-center gap-1 text-yellow-400">
+                        <Star className="w-4 h-4" />
+                        <span>{repo.stargazers_count}</span>
+                      </div>
+                    )}
+                    {repo.forks_count > 0 && (
+                      <div className="flex items-center gap-1 text-green-400">
+                        <GitFork className="w-4 h-4" />
+                        <span>{repo.forks_count}</span>
+                      </div>
                     )}
                   </div>
-                )}
 
-                {/* Language and Stats */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 flex-wrap">
-                  {repo.language && (
-                    <div className="flex items-center gap-1">
-                      <div
-                        className="w-3 h-3 rounded-full"
-                        style={{
-                          backgroundColor: LanguageColors[repo.language] || "#ccc",
-                        }}
-                      />
-                      <span className="font-medium">{repo.language}</span>
-                    </div>
-                  )}
-                  {repo.stargazers_count > 0 && (
-                    <div className="flex items-center gap-1 text-yellow-600">
-                      <Star className="w-4 h-4" />
-                      <span>{repo.stargazers_count}</span>
-                    </div>
-                  )}
-                  {repo.forks_count > 0 && (
-                    <div className="flex items-center gap-1 text-green-600">
-                      <GitFork className="w-4 h-4" />
-                      <span>{repo.forks_count}</span>
-                    </div>
-                  )}
-                </div>
+                  {/* Updated Date */}
+                  <div className="flex items-center gap-1 text-xs text-gray-400 mb-4">
+                    <Calendar className="w-3 h-3" />
+                    <span>Updated {formatDate(repo.updated_at)}</span>
+                  </div>
 
-                {/* Updated Date */}
-                <div className="flex items-center gap-1 text-xs text-gray-500 mb-4">
-                  <Calendar className="w-3 h-3" />
-                  <span>Updated {formatDate(repo.updated_at)}</span>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-2">
-                  <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition text-sm font-medium group-hover:bg-blue-600"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </a>
-                  {repo.homepage && (
+                  {/* Action Buttons */}
+                  <div className="flex gap-2">
                     <a
-                      href={repo.homepage}
+                      href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition text-sm font-medium"
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-500 transition text-sm font-medium"
                     >
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
+                      <Github className="w-4 h-4" />
+                      View Code
                     </a>
-                  )}
-                </div>
-              </motion.div>
+                    {repo.homepage && (
+                      <a
+                        href={repo.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition text-sm font-medium"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Demo
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
               </StarBorder>
             ))}
           </motion.div>
@@ -428,14 +475,14 @@ export default function ProjectsPage() {
           >
             <Github className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              No repositories found
+              No project repositories found
             </h3>
             <p className="text-gray-500 mb-4">
               {searchTerm 
-                ? `No repositories match "${searchTerm}" with the current filter`
+                ? `No projects match "${searchTerm}" with the current filter`
                 : filter === "all" 
-                ? "No repositories available" 
-                : `No repositories match the "${filter}" filter`}
+                ? "No repositories with #project tag found. Add 'project' as a topic to your repositories to display them here." 
+                : `No projects match the "${filter}" filter`}
             </p>
             {(searchTerm || filter !== "all") && (
               <button
@@ -450,9 +497,6 @@ export default function ProjectsPage() {
             )}
           </motion.div>
         )}
-
-        {/* Stats Section */}
-        
 
         {/* GitHub Profile Link */}
         {!loading && !error && repositories.length > 0 && (
@@ -475,16 +519,6 @@ export default function ProjectsPage() {
           </motion.div>
         )}
       </div>
-
-      {/* Custom Styles */}
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </main>
   );
 }
