@@ -299,7 +299,7 @@ export default function ProjectsPage() {
                 key={repo.id}
                 className="w-full"
                 color="#00bcd4"
-                speed="7s"
+                speed="5s"
                 as="div"
               >
                 <motion.div
@@ -324,23 +324,7 @@ export default function ProjectsPage() {
                   </p>
 
                   {/* Topics */}
-                  {repo.topics && repo.topics.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {repo.topics.slice(0, 3).map((topic) => (
-                        <span
-                          key={topic}
-                          className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full hover:bg-cyan-500/30 transition cursor-pointer border border-cyan-500/30"
-                        >
-                          #{topic}
-                        </span>
-                      ))}
-                      {repo.topics.length > 3 && (
-                        <span className="text-xs text-gray-400 px-2 py-1">
-                          +{repo.topics.length - 3} more
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  
 
                   {/* Language and Stats */}
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-300 flex-wrap">
@@ -355,18 +339,8 @@ export default function ProjectsPage() {
                         <span className="font-medium">{repo.language}</span>
                       </div>
                     )}
-                    {repo.stargazers_count > 0 && (
-                      <div className="flex items-center gap-1 text-yellow-400">
-                        <Star className="w-4 h-4" />
-                        <span>{repo.stargazers_count}</span>
-                      </div>
-                    )}
-                    {repo.forks_count > 0 && (
-                      <div className="flex items-center gap-1 text-green-400">
-                        <GitFork className="w-4 h-4" />
-                        <span>{repo.forks_count}</span>
-                      </div>
-                    )}
+                    
+                    
                   </div>
 
                   {/* Updated Date */}
@@ -381,7 +355,7 @@ export default function ProjectsPage() {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-500 transition text-sm font-medium"
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-full hover:bg-cyan-500 transition text-sm font-medium"
                     >
                       <Github className="w-4 h-4" />
                       View Code
@@ -391,7 +365,7 @@ export default function ProjectsPage() {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition text-sm font-medium"
+                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Demo
