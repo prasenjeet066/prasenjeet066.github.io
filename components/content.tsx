@@ -42,7 +42,7 @@ export  function HashtagHighlighter({ text }: Props) {
   }
 
   return (
-    <span className="leading-relaxed">
+    <span className="leading-relaxed font-['Lora'] first-line:tracking-widest first-letter:text-xl">
       {parts.map((part, i) => {
         switch (part.type) {
           case "hashtag":
