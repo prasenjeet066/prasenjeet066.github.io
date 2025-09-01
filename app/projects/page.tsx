@@ -1,10 +1,13 @@
 // app/projects/page.tsx
 "use client";
 import Header from "@/components/header";
+
 import { useState, useEffect } from 'react';
 import { useMobile } from "@/lib/use-mobile";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Star, GitFork, Calendar, Search, Filter } from "lucide-react";
+import StarBorder from '@/components/border'
+  
 
 interface Repository {
   id: number;
@@ -307,6 +310,12 @@ export default function ProjectsPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredRepos.map((repo, index) => (
+            <StarBorder
+            as="div"
+            className="custom-class"
+            color="cyan"
+            speed="5s">
+
               <motion.div
                 key={repo.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -406,6 +415,7 @@ export default function ProjectsPage() {
                   )}
                 </div>
               </motion.div>
+              </StarBorder>
             ))}
           </motion.div>
         )}
