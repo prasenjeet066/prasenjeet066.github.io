@@ -1,6 +1,7 @@
 // app/projects/page.tsx
 "use client";
 import Header from "@/components/header";
+import { Globe, Code2, Braces, Palette } from "lucide-react";
 
 import { useState, useEffect } from 'react';
 import { useMobile } from "@/lib/use-mobile";
@@ -8,6 +9,7 @@ import { motion } from "framer-motion";
 import { Github, ExternalLink, Star, GitFork, Calendar, Search, Filter } from "lucide-react";
 import StarBorder from '@/components/border'
   
+import LogoLoop from '@/components/logo-loop'
 
 interface Repository {
   id: number;
@@ -60,6 +62,12 @@ export default function ProjectsPage() {
   // আপনার GitHub username এখানে দিন
   const GITHUB_USERNAME = "prasenjeet066"; // এটি আপনার সঠিক GitHub username দিয়ে replace করুন
 
+const techLogos = [
+  { node: <Globe />, title: "React", href: "https://react.dev" },
+  { node: <Code2 />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <Braces />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <Palette />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
   useEffect(() => {
     const fetchRepositories = async () => {
       try {
@@ -219,6 +227,20 @@ export default function ProjectsPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             My Projects
           </h1>
+          <div style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
+      <LogoLoop
+        logos={techLogos}
+        speed={120}
+        direction="left"
+        logoHeight={48}
+        gap={40}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
+        fadeOutColor="#ffffff"
+        ariaLabel="Technology partners"
+      />
+    </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             A collection of my featured projects tagged with #project on GitHub. 
             Showcasing my journey in web development, AI, and software engineering.
