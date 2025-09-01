@@ -311,7 +311,6 @@ export default function ProjectsPage() {
           >
             {filteredRepos.map((repo, index) => (
             <StarBorder
-            as="div"
             className="custom-class"
             color="cyan"
             speed="5s">
