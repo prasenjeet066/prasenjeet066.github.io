@@ -372,28 +372,7 @@ const techLogos = [
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-full hover:bg-cyan-500 transition text-sm font-medium"
-                    >
-                      <Github className="w-4 h-4" />
-                      View Code
-                    </a>
-                    {repo.homepage && (
-                      <a
-                        href={repo.homepage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Demo
-                      </a>
-                    )}
-                  </div>
+
                 </motion.div>
               </StarBorder>
             ))}
