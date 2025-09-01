@@ -91,10 +91,10 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            className="fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-50 p-6"
+            className="fixed left-0 top-0 h-full w-full bg-white shadow-lg z-50 p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col gap-6 mt-16">
+            <div className="flex flex-col items-center justify-center gap-6 mt-16">
               {listNavs.map((nav, i) => {
                 const href = nav === "Home" ? "/" : `/${nav.toLowerCase().replace(' ', '')}`;
                 return (
