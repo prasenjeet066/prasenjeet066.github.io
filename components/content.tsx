@@ -1,4 +1,4 @@
-import TextType from '@/components/text-anim';
+
 import Image from 'next/image';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { ExternalLink } from "lucide-react";
@@ -107,39 +107,12 @@ export default function Content() {
             <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">CEO at Ry+</cite>
         </div>
     </figcaption>
-</figure>
-
-        <TextType
-          text={[
-            "Python",
-            "JavaScript",
-            "Node.js",
-            "React.js",
-            "Next.js",
-            "PHP",
-            "Laravel",
-            "Machine Learning",
-            "Deep Learning",
-            "PyTorch",
-            "TensorFlow",
-            "Data Analysis",
-            "Web Development",
-            "API Development",
-            "Database Design",
-          ]}
-          typingSpeed={70}
-          deletingSpeed={40}
-          pauseDuration={1600}
-          showCursor
-          cursorCharacter="|"
-          cursorBlinkDuration={0.6}
-          textColors={["#111111", "#1a1a1a", "#0f172a"]}
-          className="text-lg sm:text-xl font-medium tracking-tight"
-        />
-        <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-5 py-2 text-md hover:bg-gray-800 transition">
+            <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-5 py-2 text-md hover:bg-gray-800 transition">
           Hire me
           <SquareArrowOutUpRight className="w-4 h-4" />
         </button>
+</figure>
+
       </div>
 
       {/* Image Section */}
@@ -152,7 +125,6 @@ export default function Content() {
           className="object-cover"
         />
       </div>
-
       <style jsx>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
