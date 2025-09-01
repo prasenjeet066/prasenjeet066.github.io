@@ -1,56 +1,46 @@
-// pages/projects/[project].js
+// app/projects/[project]/page.tsx
 
-// 🔹 Pre-render all GitHub repos as static paths
-export async function getStaticPaths() {
+type ProjectPageProps = {
+  params: { project: string };
+};
+
+// ✅ Generate static paths for all GitHub repos
+export async function generateStaticParams() {
   const res = await fetch("https://api.github.com/users/prasenjeet066/repos", {
     headers: { Accept: "application/vnd.github.v3+json" },
   });
   
-  if (!res.ok) {
-    throw new Error("Failed to fetch GitHub repos");
-  }
+  if (!res.ok) throw new Error("Failed to fetch GitHub repos");
   
   const repos = await res.json();
   
-  // Each repo name becomes the [project] param
-  const paths = repos.map((repo) => ({
-    params: { project: repo.name },
+  return repos.map((repo: any) => ({
+    project: repo.name, // repo name becomes [project]
   }));
-  
-  return {
-    paths,
-    fallback: false, // Only pre-render existing repos
-  };
 }
 
-// 🔹 Fetch data for each repo
-export async function getStaticProps({ params }) {
+// ✅ Page component fetches repo data
+export default async function Project({ params }: ProjectPageProps) {
   const { project } = params;
   
-  const res = await fetch(
-    `https://api.github.com/repos/prasenjeet066/${project}`,
-    {
-      headers: { Accept: "application/vnd.github.v3+json" },
-    }
-  );
+  const res = await fetch(`https://api.github.com/repos/prasenjeet066/${project}`, {
+    headers: { Accept: "application/vnd.github.v3+json" },
+  });
   
   if (!res.ok) {
-    return { notFound: true }; // 404 if repo not found
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold text-red-600">
+          Repo "{project}" not found
+        </h1>
+      </div>
+    );
   }
   
   const repo = await res.json();
   
-  return {
-    props: {
-      repo,
-    },
-  };
-}
-
-// 🔹 Page Component
-export default function ProjectPage({ repo }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+    <main className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-md p-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">{repo.name}</h1>
         <p className="text-lg text-gray-600 leading-relaxed mb-4">
@@ -67,6 +57,6 @@ export default function ProjectPage({ repo }) {
           View on GitHub
         </a>
       </div>
-    </div>
+    </main>
   );
 }
