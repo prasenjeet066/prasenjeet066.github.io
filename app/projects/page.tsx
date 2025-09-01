@@ -361,14 +361,14 @@ export default function ProjectsPage() {
                 key={repo.id}
                 className="w-full"
                 color="#00bcd4"
-                speed="4s"
+                speed="7s"
                 as="div"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-gradient-to-b from-gray-900 to-black text-white p-6 rounded-[20px] group hover:scale-[1.02] transition-transform duration-300"
+                  className=" bg-white text-gray-800 p-6 rounded-[20px] group hover:scale-[1.02] transition-transform duration-300"
                 >
                   {/* Repo Header */}
                   <div className="flex items-start justify-between mb-3">
