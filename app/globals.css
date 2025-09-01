@@ -12,3 +12,6 @@
 .logo{
   font-family: "Harper-Bold";
 }
+.lta::first-letter{
+  font-size: 40px;
+}
