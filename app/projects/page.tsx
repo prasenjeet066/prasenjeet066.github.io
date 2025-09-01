@@ -2,7 +2,7 @@
 "use client";
 import Header from "@/components/header";
 import { Globe, Code2, Braces, Palette } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from 'react';
 import { useMobile } from "@/lib/use-mobile";
 import { motion } from "framer-motion";
@@ -84,6 +84,7 @@ const techLogos = [
     href: "https://tailwindcss.com",
   },
 ];
+const router = useRouter();
   useEffect(() => {
     const fetchRepositories = async () => {
       try {
@@ -242,12 +243,12 @@ const techLogos = [
         >
           <h1 className="text-4xl md:text-5xl flex flex-col items-center justify-between font-bold text-gray-900 mb-4">
             {"My Projects"}
-            <div className='w-[150px] mb-2 bg-gray-50'style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
+            <div className='w-[150px] flex flex-row items-center justify-center mb-2 bg-gray-50'style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
       <LogoLoop
         logos={techLogos}
         speed={120}
         direction="left"
-        logoHeight={48}
+        logoHeight={20}
         gap={40}
         pauseOnHover
         scaleOnHover
