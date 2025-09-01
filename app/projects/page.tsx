@@ -240,10 +240,9 @@ const techLogos = [
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            My Projects
-          </h1>
-          <div className='w-[150px] mb-2'style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
+          <h1 className="text-4xl md:text-5xl flex flex-col items-center justify-between font-bold text-gray-900 mb-4">
+            {"My Projects"}
+            <div className='w-[150px] mb-2 bg-gray-50'style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
       <LogoLoop
         logos={techLogos}
         speed={120}
@@ -255,8 +254,9 @@ const techLogos = [
         fadeOut
         fadeOutColor="#ffffff"
         ariaLabel="Technology partners"
-      />
-    </div>
+      /> </div>
+          </h1>
+          
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             A collection of my featured projects tagged with #project on GitHub. 
             Showcasing my journey in web development, AI, and software engineering.
