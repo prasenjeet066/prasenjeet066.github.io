@@ -1,15 +1,11 @@
-// app/sitemap.ts
 import fs from "fs";
 import path from "path";
-import { MetadataRoute } from "next";
 
 const baseUrl = 'https://prasenjeet066.github.io';
 const baseDir = "app"; // your app directory
 const excludeDirs = ["api", "fonts"];
 
-export const revalidate = 3600; // revalidate at most every hour
-
-async function getRoutes(): Promise < MetadataRoute.Sitemap > {
+async function getRoutes() {
   const fullPath = path.join(process.cwd(), baseDir);
   const entries = fs.readdirSync(fullPath, { withFileTypes: true });
   
@@ -22,25 +18,35 @@ async function getRoutes(): Promise < MetadataRoute.Sitemap > {
     }
   });
   
-  // Add dynamic routes from API (example: todos)
-  async function getDynamicRoutes() {
-    const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const todos = await res.json();
-    const todoRoutes = todos.map((todo: any) => `/todo/${todo.id}`);
-    routes = [...routes, ...todoRoutes];
-  }
+  // Add dynamic routes from API
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const todos = await res.json();
+  const todoRoutes = todos.map((todo: any) => `/todo/${todo.id}`);
+  routes = [...routes];
   
-  await getDynamicRoutes();
-  
-  // Map all routes to sitemap format
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1.0,
-  }));
+  return routes;
 }
 
-export default function sitemap() {
-  return getRoutes();
+// Convert routes to XML
+export default async function sitemap() {
+  const routes = await getRoutes();
+  
+  const urls = routes.map((route) => `
+  <url>
+    <loc>${baseUrl}${route}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `).join("");
+  
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+  
+  // Optional: write to public folder so GitHub Pages can serve it
+  fs.writeFileSync(path.join(process.cwd(), "public", "sitemap.xml"), xml);
+  
+  return xml;
 }
