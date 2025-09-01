@@ -346,10 +346,10 @@ const router = useRouter();
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className=" bg-white text-gray-800 p-6 rounded-[20px] group hover:scale-[1.02] transition-transform duration-300"
-                  onClick={()=>router.push(`projects/${repo.name}`)}
+                  
                 >
                   {/* Repo Header */}
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start justify-between mb-3" onClick={()=>router.push(`/projects/${repo.name}`)}>
                     <div className="flex items-center gap-2 min-w-0 flex-1">
                       <Github className="w-5 h-5 text-gray-300 flex-shrink-0 group-hover:text-cyan-400 transition" />
                       <h3 className="text-lg font-semibold text-gray-800 truncate group-hover:text-cyan-400 transition">
