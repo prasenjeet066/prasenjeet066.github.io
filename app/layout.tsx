@@ -38,6 +38,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
           rel="stylesheet"
         />
+         <meta
+          name="google-site-verification"
+          content="si-9xvazuTC_YgAXRUoQa4J8wzq9hschE_bH6nPXGwk"
+        />
         <link href="/fonts/main.css" rel="stylesheet" />
 
         {/* JSON-LD Structured Data for Google Knowledge Panel */}
