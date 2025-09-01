@@ -312,7 +312,7 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 group hover:border-blue-300 hover:scale-105"
+                className="bg-white rounded-lg  hover:shadow-xl transition-all duration-300 p-6  group rounded-md hover:border-blue-300 hover:scale-105"
               >
                 {/* Repo Header */}
                 <div className="flex items-start justify-between mb-3">
@@ -322,11 +322,7 @@ export default function ProjectsPage() {
                       {repo.name}
                     </h3>
                   </div>
-                  {repo.private && (
-                    <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded flex-shrink-0">
-                      🔒 Private
-                    </span>
-                  )}
+                  
                 </div>
 
                 {/* Description */}
@@ -447,44 +443,7 @@ export default function ProjectsPage() {
         )}
 
         {/* Stats Section */}
-        {!loading && !error && repositories.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 bg-white rounded-lg shadow-md p-6 border border-gray-200"
-          >
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-              Repository Statistics
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">
-                  {repositories.length}
-                </div>
-                <div className="text-sm text-gray-600">Total Repos</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-600">
-                  {repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0)}
-                </div>
-                <div className="text-sm text-gray-600">Total Stars</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">
-                  {repositories.reduce((sum, repo) => sum + repo.forks_count, 0)}
-                </div>
-                <div className="text-sm text-gray-600">Total Forks</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">
-                  {languages.length}
-                </div>
-                <div className="text-sm text-gray-600">Languages</div>
-              </div>
-            </div>
-          </motion.div>
-        )}
+        
 
         {/* GitHub Profile Link */}
         {!loading && !error && repositories.length > 0 && (
