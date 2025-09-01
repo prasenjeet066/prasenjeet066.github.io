@@ -63,10 +63,26 @@ export default function ProjectsPage() {
   const GITHUB_USERNAME = "prasenjeet066"; // এটি আপনার সঠিক GitHub username দিয়ে replace করুন
 
 const techLogos = [
-  { node: <Globe />, title: "React", href: "https://react.dev" },
-  { node: <Code2 />, title: "Next.js", href: "https://nextjs.org" },
-  { node: <Braces />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-  { node: <Palette />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  {
+    src: "https://cdn.simpleicons.org/react/61DAFB",
+    title: "React",
+    href: "https://react.dev",
+  },
+  {
+    src: "https://cdn.simpleicons.org/nextdotjs/000000",
+    title: "Next.js",
+    href: "https://nextjs.org",
+  },
+  {
+    src: "https://cdn.simpleicons.org/typescript/3178C6",
+    title: "TypeScript",
+    href: "https://www.typescriptlang.org",
+  },
+  {
+    src: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+    title: "Tailwind CSS",
+    href: "https://tailwindcss.com",
+  },
 ];
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -227,7 +243,7 @@ const techLogos = [
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             My Projects
           </h1>
-          <div style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
+          <div className='w-[150px] mb-2'style={{ height: '50px', position: 'relative', overflow: 'hidden'}}>
       <LogoLoop
         logos={techLogos}
         speed={120}
