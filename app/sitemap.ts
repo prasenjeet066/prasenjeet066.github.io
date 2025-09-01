@@ -4,7 +4,7 @@ import path from "path";
 import { MetadataRoute } from "next";
 
 const baseUrl = 'https://prasenjeet066.github.io';
-const baseDir = "src/app"; // your app directory
+const baseDir = "app"; // your app directory
 const excludeDirs = ["api", "fonts"];
 
 export const revalidate = 3600; // revalidate at most every hour
