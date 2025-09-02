@@ -97,7 +97,7 @@ function NavLink({
           className={
             isMobile
               ? "text-lg text-gray-700 hover:text-black transition"
-              : "text-sm text-gray-700 hover:text-black hover:underline after:content-['_↗'] transition"
+              : "text-sm text-gray-700 hover:text-black hover:underline  transition"
           }
           onClick={onClick}
         >
@@ -138,7 +138,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center justify-between w-full p-4 relative sticky top-0 z-50 bg-white"
+        className="flex items-center justify-between w-full p-4 relative sticky top-0 z-50 bg-white bg-white/50 z-30 backdrop-blur-md"
       >
         {/* Mobile menu button */}
         {isMobile && (
