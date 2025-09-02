@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Linkedin, Menu, X } from "lucide-react";
+import { Linkedin, Menu, X, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import { useMobile } from "@/lib/use-mobile";
 import { useSession } from "next-auth/react";
 
@@ -10,48 +11,122 @@ interface HeaderProps {
   setOpenSideBar: (open: boolean) => void;
 }
 
-// Navigation list
-const listNavs = [
+interface NavItem {
+  name: string;
+  path ? : string;
+  submenu ? : NavItem[];
+}
+
+// Navigation list with submenu
+const listNavs: NavItem[] = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Projects", path: "/projects" },
+  {
+    name: "Projects",
+    submenu: [
+      { name: "All Projects", path: "/projects" },
+      { name: "Research", path: "/research" },
+      { name: "Future Plans", path: "/future" },
+    ],
+  },
   { name: "Team", path: "/team" },
-  { name: "Research", path: "/research" },
-  { name: "Future", path: "/future" },
   { name: "Blog", path: "/blog" },
   { name: "Hire Me", path: "/hire" },
 ];
 
-// Reusable NavLink component
+// NavLink component
 function NavLink({
   nav,
   delay,
   onClick,
   isMobile = false,
 }: {
-  nav: { name: string;path: string };
+  nav: NavItem;
   delay ? : number;
   onClick ? : () => void;
   isMobile ? : boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Mobile submenu toggle
+  const toggleSubmenu = () => setIsOpen(!isOpen);
+  
+  if (isMobile && nav.submenu) {
+    return (
+      <div className="w-full">
+        <button
+          className="flex justify-between items-center w-full text-lg text-gray-700 py-2 px-4 hover:text-black transition"
+          onClick={toggleSubmenu}
+        >
+          {nav.name} <ChevronDown size={18} className={`${isOpen ? "rotate-180" : ""} transition`} />
+        </button>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col ml-4 border-l border-gray-200"
+          >
+            {nav.submenu.map((sub, i) => (
+              <motion.a
+                key={sub.name}
+                href={sub.path}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="text-gray-700 py-2 px-4 hover:text-black transition"
+                onClick={onClick}
+              >
+                {sub.name}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </div>
+    );
+  }
+  
   return (
-    <motion.a
-      href={nav.path}
-      initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, y: -10 }}
-      animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay }}
-      className={
-        isMobile
-          ? "text-lg text-gray-700 hover:text-black transition"
-          : "text-sm text-gray-700 hover:text-black hover:underline after:content-['_↗'] transition"
-      }
-      onClick={onClick}
-    >
-      {nav.name}
-    </motion.a>
+    <div className="relative group">
+      {nav.path && (
+        <motion.a
+          href={nav.path}
+          initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, y: -10 }}
+          animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay }}
+          className={
+            isMobile
+              ? "text-lg text-gray-700 hover:text-black transition"
+              : "text-sm text-gray-700 hover:text-black hover:underline after:content-['_↗'] transition"
+          }
+          onClick={onClick}
+        >
+          {nav.name}
+        </motion.a>
+      )}
+
+      {/* Desktop submenu */}
+      {!isMobile && nav.submenu && (
+        <div className="absolute top-full left-0 mt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md p-2 z-50 min-w-[160px]">
+          {nav.submenu.map((sub, i) => (
+            <motion.a
+              key={sub.name}
+              href={sub.path}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.05 }}
+              className="text-sm text-gray-700 px-4 py-2 hover:bg-gray-100 rounded-md transition"
+            >
+              {sub.name}
+            </motion.a>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
+// Header Component
 export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
   const isMobile = useMobile();
   const { data: session, status } = useSession();
@@ -63,7 +138,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center justify-between w-full p-4 relative sticky top-0  z-50"
+        className="flex items-center justify-between w-full p-4 relative sticky top-0 z-50 bg-white"
       >
         {/* Mobile menu button */}
         {isMobile && (
@@ -91,7 +166,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
           <div className="flex items-center gap-6 ml-auto">
             <nav className="flex items-center gap-6">
               {listNavs.map((nav, i) => (
-                <NavLink key={nav.path} nav={nav} delay={0.3 + i * 0.1} />
+                <NavLink key={nav.name} nav={nav} delay={0.3 + i * 0.1} />
               ))}
             </nav>
 
@@ -124,13 +199,13 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            className="fixed left-0 top-0 h-full w-full bg-white shadow-lg z-50 p-6"
+            className="fixed left-0 top-0 h-full w-full bg-white shadow-lg z-50 p-6 overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col items-center justify-center gap-6 mt-16">
+            <div className="flex flex-col items-start justify-start gap-2 mt-16">
               {listNavs.map((nav, i) => (
                 <NavLink
-                  key={nav.path}
+                  key={nav.name}
                   nav={nav}
                   delay={i * 0.1}
                   isMobile
