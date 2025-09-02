@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { allProject } from "@/lib/project";
+import { allProject } from "@/lib/projects";
 
 // 🔹 Pre-generate static params
 export async function generateStaticParams() {
