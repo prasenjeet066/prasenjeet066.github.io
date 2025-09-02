@@ -88,7 +88,8 @@ export default function Content() {
   let details = "Hello! I’m a passionate web developer and AI enthusiast with a love for creating innovative digital experiences. Over the years, I’ve honed my skills in Python, JavaScript, Node.js , React, PHP, and Laravel, building projects that are both efficient and user-friendly. But my curiosity doesn’t stop at web development—I’m deeply interested in Machine Learning and Deep Learning, using frameworks like PyTorch and #TensorFlow to develop intelligent solutions that can learn, adapt, and make a real impact. "
   details = details.slice(0,350) + " ..."
   return (
-    <div className="w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-lg mx-6 mt-2">
+    <div className='p-6'>
+    <div className="w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-lg">
       
       {/* Text Section with gradient background */}
       <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl">
@@ -134,6 +135,7 @@ export default function Content() {
           animation: blink 0.6s infinite;
         }
       `}</style>
+    </div>
     </div>
   );
 }

@@ -10,7 +10,7 @@
   /* Apply TikTok Sans to all common text elements */
   
 .logo{
-  font-family: "Intel One Mono" !important;
+  font-family: "Intel One Mono" ;
 }
 .lta::first-letter{
   font-size: 40px;
