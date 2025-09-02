@@ -4,13 +4,15 @@
 
   
   body {
-    font-family: 'Ubuntu' !important;
+    font-family: 'Intel One Mono' !important;
   }
   
   /* Apply TikTok Sans to all common text elements */
   
 .logo{
-  font-family: "Intel One Mono" ;
+  font-family: "Harper-Bold"!important;
+  color: #000;
+  
 }
 .lta::first-letter{
   font-size: 40px;

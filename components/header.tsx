@@ -142,7 +142,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center justify-between w-full p-4 relative sticky top-0 z-50 bg-white bg-white/50 z-30 backdrop-blur-md"
+        className="flex items-center justify-between w-full p-4 relative sticky top-0 z-50 bg-white/50 z-30 backdrop-blur-md"
       >
         {/* Mobile menu button */}
         {isMobile && (
@@ -160,7 +160,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg logo tracking-wide italic text-red-600"
+          className="text-lg logo tracking-wide italic"
         >
           prasenjeet
         </motion.span>
