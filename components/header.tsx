@@ -17,7 +17,7 @@ interface NavItem {
   submenu ? : NavItem[];
 }
 
-// Navigation list with submenu
+// Navigation items
 const listNavs: NavItem[] = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
@@ -37,7 +37,7 @@ const listNavs: NavItem[] = [
 // NavLink component
 function NavLink({
   nav,
-  delay,
+  delay = 0,
   onClick,
   isMobile = false,
 }: {
@@ -48,9 +48,9 @@ function NavLink({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   
-  // Mobile submenu toggle
   const toggleSubmenu = () => setIsOpen(!isOpen);
   
+  // Mobile menu with submenu
   if (isMobile && nav.submenu) {
     return (
       <div className="w-full">
@@ -58,8 +58,13 @@ function NavLink({
           className="flex justify-between items-center w-full text-lg text-gray-700 py-2 px-4 hover:text-black transition"
           onClick={toggleSubmenu}
         >
-          {nav.name} <ChevronDown size={18} className={`${isOpen ? "rotate-180" : ""} transition`} />
+          {nav.name}
+          <ChevronDown
+            size={18}
+            className={`${isOpen ? "rotate-180" : ""} transition`}
+          />
         </button>
+
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
@@ -97,7 +102,7 @@ function NavLink({
           className={
             isMobile
               ? "text-lg text-gray-700 hover:text-black transition"
-              : "text-sm text-gray-700 hover:text-black hover:underline  transition"
+              : "text-sm text-gray-700 hover:text-black hover:underline transition"
           }
           onClick={onClick}
         >
@@ -126,14 +131,13 @@ function NavLink({
   );
 }
 
-// Header Component
+// Header component
 export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
   const isMobile = useMobile();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   
   return (
     <>
-      {/* Header */}
       <motion.header
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -161,7 +165,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
           prasenjeet
         </motion.span>
 
-        {/* Desktop Navigation + LinkedIn button */}
+        {/* Desktop navigation */}
         {!isMobile && (
           <div className="flex items-center gap-6 ml-auto">
             <nav className="flex items-center gap-6">
@@ -186,7 +190,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         )}
       </motion.header>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Sidebar */}
       {isMobile && isOpenSideBar && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -202,7 +206,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
             className="fixed left-0 top-0 h-full w-full bg-white shadow-lg z-50 p-6 overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col items-start justify-start gap-2 mt-16">
+            <div className="flex flex-col items-start gap-2 mt-16">
               {listNavs.map((nav, i) => (
                 <NavLink
                   key={nav.name}
@@ -213,7 +217,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
                 />
               ))}
 
-              {/* Mobile SignUp / SignIn */}
+              {/* SignUp / SignIn */}
               <motion.a
                 href="/admin/signup"
                 initial={{ opacity: 0, x: -20 }}
