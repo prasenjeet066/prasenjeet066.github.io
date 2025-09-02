@@ -63,7 +63,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center justify-between w-full p-4 relative z-50"
+        className="flex items-center justify-between w-full p-4 relative sticky top-0  z-50"
       >
         {/* Mobile menu button */}
         {isMobile && (
