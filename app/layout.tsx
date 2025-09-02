@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import  AuthProvider  from "@/components/AuthProvider"
+import AuthProvider from "@/components/AuthProvider"
 import { Raleway, Inconsolata, Besley as Bytesized } from "next/font/google";
 import "./globals.css";
 
@@ -14,12 +14,11 @@ export const metadata: Metadata = {
     siteName: "Prasenjeet",
     type: "website",
     images: [
-      {
-        url: "https://yourmicroblog.com/logo.png",
-        width: 800,
-        height: 800,
-      },
-    ],
+    {
+      url: "https://yourmicroblog.com/logo.png",
+      width: 800,
+      height: 800,
+    }, ],
   },
   twitter: {
     card: "summary_large_image",
@@ -33,8 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet"/>
         <link
           href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
           rel="stylesheet"
