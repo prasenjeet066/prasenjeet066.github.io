@@ -89,7 +89,7 @@ export default function Content() {
   details = details.slice(0,350) + " ..."
   return (
     <div className='p-6'>
-    <div className="w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-lg">
+    <div className="w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-xl">
       
       {/* Text Section with gradient background */}
       <div className="flex-1 w-full flex flex-col items-start gap-4 p-6 rounded-xl">
