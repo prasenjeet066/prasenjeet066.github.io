@@ -2,12 +2,6 @@ import { Metadata } from "next";
 import { allProject } from "@/lib/projects";
 
 // 🔹 Pre-generate static params
-export async function generateStaticParams() {
-  const projects = await allProject();
-  return projects.map((project) => ({
-    project: project.name,
-  }));
-}
 
 // 🔹 Dynamic metadata
 export async function generateMetadata({
