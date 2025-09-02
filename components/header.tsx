@@ -1,21 +1,64 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Linkedin, Menu, X } from "lucide-react";
 import { useMobile } from "@/lib/use-mobile";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react"
+import { useSession } from "next-auth/react";
+
 interface HeaderProps {
   isOpenSideBar: boolean;
   setOpenSideBar: (open: boolean) => void;
 }
 
+// Navigation list
+const listNavs = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Projects", path: "/projects" },
+  { name: "Team", path: "/team" },
+  { name: "Research", path: "/research" },
+  { name: "Future", path: "/future" },
+  { name: "Blog", path: "/blog" },
+  { name: "Hire Me", path: "/hire" },
+];
+
+// Reusable NavLink component
+function NavLink({
+  nav,
+  delay,
+  onClick,
+  isMobile = false,
+}: {
+  nav: { name: string;path: string };
+  delay ? : number;
+  onClick ? : () => void;
+  isMobile ? : boolean;
+}) {
+  return (
+    <motion.a
+      href={nav.path}
+      initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, y: -10 }}
+      animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay }}
+      className={
+        isMobile
+          ? "text-lg text-gray-700 hover:text-black transition"
+          : "text-sm text-gray-700 hover:text-black hover:underline after:content-['_↗'] transition"
+      }
+      onClick={onClick}
+    >
+      {nav.name}
+    </motion.a>
+  );
+}
+
 export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
-  const router = useRouter()
-  const listNavs = ["Home", "About Me", "Projects","Teams", "Papers","Futures", "Blogs","Hire"];
   const isMobile = useMobile();
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
+  
   return (
     <>
+      {/* Header */}
       <motion.header
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -24,8 +67,8 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
       >
         {/* Mobile menu button */}
         {isMobile && (
-          <button 
-            className='outline-none border-none p-2' 
+          <button
+            className="outline-none border-none p-2"
             onClick={() => setOpenSideBar(!isOpenSideBar)}
             aria-label="Toggle menu"
           >
@@ -47,21 +90,9 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
         {!isMobile && (
           <div className="flex items-center gap-6 ml-auto">
             <nav className="flex items-center gap-6">
-              {listNavs.map((name, i) => {
-                const href = name === "Home" ? "/" : `/${name.toLowerCase().replace(' ', '')}`;
-                return (
-                  <motion.a
-                    key={name}
-                    href={href}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    className="text-sm text-gray-700 transition hover:text-black hover:underline after:content-['_↗']"
-                  >
-                    {name}
-                  </motion.a>
-                );
-              })}
+              {listNavs.map((nav, i) => (
+                <NavLink key={nav.path} nav={nav} delay={0.3 + i * 0.1} />
+              ))}
             </nav>
 
             <motion.a
@@ -97,33 +128,24 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col items-center justify-center gap-6 mt-16">
-              {listNavs.map((nav, i) => {
-                const href = nav === "Home" ? "/" : `/${nav.toLowerCase().replace(' ', '')}`;
-                return (
-                  <motion.a
-                    key={i}
-                    href={href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="text-lg text-gray-700 hover:text-black transition"
-                    onClick={() => setOpenSideBar(false)}
-                  >
-                    {nav}
-                  </motion.a>
-                );
-              })}
-              
-              {/* Mobile LinkedIn link */}
+              {listNavs.map((nav, i) => (
+                <NavLink
+                  key={nav.path}
+                  nav={nav}
+                  delay={i * 0.1}
+                  isMobile
+                  onClick={() => setOpenSideBar(false)}
+                />
+              ))}
+
+              {/* Mobile SignUp / SignIn */}
               <motion.a
                 href="/admin/signup"
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
                 className="flex items-center gap-2 mt-4 text-blue-600 hover:text-blue-800 transition"
-              > 
+              >
                 <span>SignUp or SignIn</span>
               </motion.a>
             </div>
