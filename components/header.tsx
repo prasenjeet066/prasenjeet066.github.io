@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Menu, X } from "lucide-react";
 import { useMobile } from "@/lib/use-mobile";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react"
 interface HeaderProps {
   isOpenSideBar: boolean;
   setOpenSideBar: (open: boolean) => void;
@@ -10,9 +11,9 @@ interface HeaderProps {
 
 export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
   const router = useRouter()
-  const listNavs = ["Home", "About Me", "Projects", "Hire Me"];
+  const listNavs = ["Home", "About Me", "Projects","Teams", "Papers","Futures", "Blogs","Hire"];
   const isMobile = useMobile();
-
+  const { data: session, status } = useSession()
   return (
     <>
       <motion.header
@@ -115,16 +116,15 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
               
               {/* Mobile LinkedIn link */}
               <motion.a
-                href="https://www.linkedin.com/in/prasenjeet066"
+                href="/admin/signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
                 className="flex items-center gap-2 mt-4 text-blue-600 hover:text-blue-800 transition"
-              >
-                <Linkedin size={20} />
-                <span>LinkedIn Profile</span>
+              > 
+                <span>SignUp or SignIn</span>
               </motion.a>
             </div>
           </motion.div>

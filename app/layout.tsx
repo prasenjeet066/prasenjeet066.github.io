@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
+import  AuthProvider  from "@/components/AuthProvider"
 import { Raleway, Inconsolata, Besley as Bytesized } from "next/font/google";
 import "./globals.css";
 
@@ -81,7 +82,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>{children}</body>
+      
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        </body>
     </html>
   );
 }
