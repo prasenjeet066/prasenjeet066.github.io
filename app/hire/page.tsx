@@ -1,10 +1,5 @@
 "use client"
 import Header from "@/components/header"
-import Header from "@/components/header";
-
-import { useState } from 'react';
-import { useMobile } from "@/lib/use-mobile";
-import Content from "@/components/content"
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, MapPin, Calendar, Download, ExternalLink } from "lucide-react";
 import Image from "next/image";
