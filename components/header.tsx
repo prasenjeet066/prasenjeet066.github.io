@@ -316,7 +316,7 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-center"
             >
-              <a href="/" className="text-xl font-bold tracking-wide italic text-gray-900 hover:text-gray-700 transition-colors">
+              <a href="/" className="text-xl font-bold tracking-wide italic text-gray-900 hover:text-gray-700 transition-colors logo">
                 prasenjeet
               </a>
             </motion.div>
