@@ -232,8 +232,8 @@ const router = useRouter();
       `}</style>
 
       <Header isOpenSideBar={isOpenSideBar} setOpenSideBar={setOpenSideBar} />
-      
-      <div className="container mx-auto px-4 py-8">
+          <div className='p-6'>
+    <div className="container w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-xl">
         {/* Page Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -258,7 +258,7 @@ const router = useRouter();
       /> </div>
           </h1>
           
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600 max-w-2xl mx-auto">
             A collection of my featured projects tagged with #project on GitHub. 
             Showcasing my journey in web development, AI, and software engineering.
           </p>
@@ -449,6 +449,7 @@ const router = useRouter();
             </a>
           </motion.div>
         )}
+      </div>
       </div>
     </main>
   );
