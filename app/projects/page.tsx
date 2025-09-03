@@ -232,8 +232,8 @@ const router = useRouter();
       `}</style>
 
       <Header isOpenSideBar={isOpenSideBar} setOpenSideBar={setOpenSideBar} />
-          <div className='p-6'>
-    <div className="container w-full h-full flex flex-col md:flex-row items-center gap-8 px-4 md:px-12 py-6 bg-white rounded-xl">
+          <div className='p-6 mt-4'>
+    <div className="container w-full h-full gap-8 px-4 md:px-12 py-6 bg-white rounded-xl">
         {/* Page Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
