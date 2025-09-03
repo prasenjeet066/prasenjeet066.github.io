@@ -13,7 +13,7 @@ interface BookTypes {
   } | null
 }
 export default function HirePage() {
-  const booksDetails: BookTypes | null = useState();
+  const booksDetails = useState();
   const isMobile = useMobile();
   const [isOpenSideBar, setOpenSideBar] = useState(false);
   
