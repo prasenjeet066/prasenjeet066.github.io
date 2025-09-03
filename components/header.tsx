@@ -43,7 +43,7 @@ const navigationConfig: NavItem[] = [
   },
   { 
     name: "Blog", 
-    path: "/blog" 
+    path: "/blogs" 
   },
   { 
     name: "Hire Me", 
