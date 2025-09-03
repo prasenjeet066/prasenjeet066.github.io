@@ -284,7 +284,15 @@ const router = useRouter();
           </div>
 
           {/* Filter Buttons */}
-        
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <button onClick={() => setFilter("all")} className={`px-3 py-1.5 rounded-full text-sm border ${filter==="all"?"bg-gray-900 text-white border-gray-900":"bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>All</button>
+            <button onClick={() => setFilter("public")} className={`px-3 py-1.5 rounded-full text-sm border ${filter==="public"?"bg-gray-900 text-white border-gray-900":"bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>Public</button>
+            <button onClick={() => setFilter("starred")} className={`px-3 py-1.5 rounded-full text-sm border ${filter==="starred"?"bg-gray-900 text-white border-gray-900":"bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>Starred</button>
+            <button onClick={() => setFilter("forked")} className={`px-3 py-1.5 rounded-full text-sm border ${filter==="forked"?"bg-gray-900 text-white border-gray-900":"bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>Forked</button>
+            {languages.map((lang) => (
+              <button key={String(lang)} onClick={() => setFilter(String(lang))} className={`px-3 py-1.5 rounded-full text-sm border ${filter===String(lang)?"bg-gray-900 text-white border-gray-900":"bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>{String(lang)}</button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Repository Count */}
@@ -364,7 +372,13 @@ const router = useRouter();
                   </p>
 
                   {/* Topics */}
-                  
+                  {repo.topics && repo.topics.length>0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {repo.topics.slice(0,6).map((topic) => (
+                        <span key={topic} className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-700 border border-gray-200">#{topic}</span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Language and Stats */}
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-300 flex-wrap">
@@ -390,7 +404,18 @@ const router = useRouter();
                   </div>
 
                   {/* Action Buttons */}
-
+                  <div className="flex items-center gap-2">
+                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition">
+                      <Github className="w-4 h-4" />
+                      Repo
+                    </a>
+                    {repo.homepage && (
+                      <a href={repo.homepage} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-gray-300 text-sm text-gray-800 hover:bg-gray-50 transition">
+                        <ExternalLink className="w-4 h-4" />
+                        Live
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               </StarBorder>
             ))}
