@@ -412,33 +412,6 @@ export default function Header({ isOpenSideBar, setOpenSideBar }: HeaderProps) {
                 </div>
 
                 {/* Mobile footer */}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <motion.a
-                    href="/admin/signup"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors font-medium"
-                    onClick={() => setOpenSideBar(false)}
-                  >
-                    <User size={18} />
-                    <span>SignUp / SignIn</span>
-                  </motion.a>
-
-                  <motion.a
-                    href="https://www.linkedin.com/in/prasenjeet066"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="flex items-center gap-2 mt-4 px-4 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-                    onClick={() => setOpenSideBar(false)}
-                  >
-                    <Linkedin size={18} />
-                    <span>Visit LinkedIn</span>
-                  </motion.a>
-                </div>
               </div>
             </motion.div>
           </>
