@@ -104,8 +104,8 @@ export default function Content() {
     <figcaption className="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
         <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture"/>
         <div className="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
-            <cite className="pe-3 font-medium text-gray-900 dark:text-white">Michael Gough</cite>
-            <cite className="ps-3 text-sm text-gray-500 dark:text-gray-400">CEO at Ry+</cite>
+            <cite className="pe-3 font-medium text-gray-900 dark:text-white">Prasenjeet Howlader</cite>
+            <cite className="ps-3 text-sm text-gray-500 dark:text-gray-400">CEO at Ri</cite>
         </div>
     </figcaption>
             <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-5 py-2 text-md hover:bg-gray-800 transition">
