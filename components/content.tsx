@@ -116,7 +116,7 @@ export default function Content() {
 
       </div>
 
-      {/* Image Section */}
+      {/* Image Section 
       <div className="flex-1 relative w-full h-[400px] shadow-[6px_6px_0px_-3px_rgba(0,_0,_0,_1)]">
         <Image
           src="/img/pf.png"
@@ -125,7 +125,7 @@ export default function Content() {
           fill
           className="object-cover"
         />
-      </div>
+      </div>**/}
       <style jsx>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
